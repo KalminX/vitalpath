@@ -1,0 +1,282 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" class="h-full scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{{ SITE_NAME }} | Practical Health Education{% endblock %}</title>
+    
+    <!-- Meta Description & SEO -->
+    <meta name="description" content="{% block meta_description %}VitalPath provides structured, evidence-informed digital educational resources to make everyday health concepts easy to understand.{% endblock %}">
+    <meta property="og:title" content="{% block og_title %}{{ SITE_NAME }} | Practical Health Education{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}Structured, evidence-informed health education without confusion or dogma.{% endblock %}">
+    <meta property="og:type" content="website">
+
+    <!-- Tailwind CSS with custom theme config -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        stone: {
+                            50: '#FAF9F6',
+                            100: '#F5F5F0',
+                            200: '#E7E5DF',
+                            300: '#D6D3CA',
+                            400: '#A8A296',
+                            500: '#78716C',
+                            600: '#57534E',
+                            700: '#44403C',
+                            800: '#292524',
+                            900: '#1C1917',
+                            950: '#0C0A09',
+                        },
+                        emerald: {
+                            50: '#F0FDF4',
+                            100: '#DCFCE7',
+                            200: '#BBF7D0',
+                            300: '#86EFAC',
+                            400: '#4ADE80',
+                            500: '#22C55E',
+                            600: '#16A34A',
+                            700: '#047857',
+                            800: '#065F46',
+                            900: '#064E3B',
+                            950: '#022C22',
+                        },
+                        amber: {
+                            50: '#FFFBEB',
+                            100: '#FEF3C7',
+                            200: '#FDE68A',
+                            300: '#FCD34D',
+                            400: '#FBBF24',
+                            500: '#F59E0B',
+                            600: '#D97706',
+                            700: '#B45309',
+                            800: '#92400E',
+                            900: '#78350F',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+                        display: ['Outfit', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+                        serif: ['Newsreader', 'Georgia', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    {% block extra_head %}{% endblock %}
+</head>
+<body class="flex flex-col min-h-screen bg-[#FAFAF8] text-stone-800 antialiased selection:bg-emerald-100 selection:text-emerald-900">
+
+    <!-- Demo Disclaimer Header Ribbon -->
+    <div class="bg-stone-900 text-stone-300 text-xs py-1.5 px-4 text-center border-b border-stone-800">
+        <div class="max-w-7xl mx-auto flex items-center justify-center space-x-2">
+            <span class="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-semibold bg-emerald-900/80 text-emerald-200 border border-emerald-700">PORTFOLIO DEMONSTRATION</span>
+            <span>Fictional health education platform prototype. Not medical advice. Test Mode Stripe checkout enabled.</span>
+            <a href="{% url 'dashboard:overview' %}" class="underline font-medium text-emerald-400 hover:text-emerald-300 ml-2">Open Creator Dashboard &rarr;</a>
+        </div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <header class="sticky top-0 z-40 bg-[#FAFAF8]/95 backdrop-blur-md border-b border-stone-200/80 transition-all">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <a href="{% url 'core:home' %}" class="flex items-center space-x-3 group">
+                        <div class="w-10 h-10 rounded-xl bg-stone-900 flex items-center justify-center text-white shadow-sm group-hover:bg-emerald-800 transition">
+                            <i data-lucide="shield-check" class="w-5 h-5 text-emerald-400"></i>
+                        </div>
+                        <div class="flex flex-col">
+                            <span class="font-display font-bold text-xl tracking-tight text-stone-900 group-hover:text-emerald-800 transition">VitalPath</span>
+                            <span class="text-[10px] font-semibold tracking-widest text-stone-400 uppercase -mt-1">Education</span>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Desktop Navigation Links -->
+                <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-stone-600">
+                    <a href="{% url 'core:home' %}" class="hover:text-stone-900 transition {% if request.resolver_match.url_name == 'home' %}text-stone-900 font-semibold{% endif %}">Home</a>
+                    <a href="{% url 'products:list' %}" class="hover:text-stone-900 transition {% if 'products' in request.resolver_match.namespaces or 'courses' in request.path %}text-stone-900 font-semibold{% endif %}">Courses</a>
+                    <a href="{% url 'core:resources' %}" class="hover:text-stone-900 transition {% if request.resolver_match.url_name == 'resources' %}text-stone-900 font-semibold{% endif %}">Resources</a>
+                    <a href="{% url 'core:about' %}" class="hover:text-stone-900 transition {% if request.resolver_match.url_name == 'about' %}text-stone-900 font-semibold{% endif %}">About</a>
+                </nav>
+
+                <!-- Right Action Buttons -->
+                <div class="hidden md:flex items-center space-x-4">
+                    {% if user.is_authenticated and user.is_staff %}
+                        <a href="{% url 'dashboard:overview' %}" class="inline-flex items-center space-x-2 text-xs font-semibold px-3.5 py-2 rounded-lg bg-stone-100 hover:bg-stone-200 text-stone-800 transition border border-stone-200">
+                            <i data-lucide="layout-dashboard" class="w-4 h-4 text-emerald-700"></i>
+                            <span>Creator Dashboard</span>
+                        </a>
+                    {% else %}
+                        <a href="{% url 'dashboard:login' %}" class="text-sm font-medium text-stone-600 hover:text-stone-900 transition px-3 py-2">
+                            Sign In
+                        </a>
+                    {% endif %}
+
+                    <a href="{% url 'products:list' %}" class="inline-flex items-center space-x-2 text-sm font-semibold px-4 py-2.5 rounded-xl bg-stone-900 hover:bg-emerald-800 text-white shadow-sm transition">
+                        <span>Explore Courses</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="flex md:hidden">
+                    <button id="mobile-menu-btn" type="button" class="p-2 rounded-lg text-stone-600 hover:text-stone-900 hover:bg-stone-100 focus:outline-none" aria-label="Open Menu">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Drawer -->
+        <div id="mobile-nav-drawer" class="hidden md:hidden fixed inset-0 z-50 bg-stone-900/60 backdrop-blur-sm">
+            <div class="fixed inset-y-0 right-0 max-w-xs w-full bg-white shadow-2xl p-6 flex flex-col justify-between border-l border-stone-200">
+                <div>
+                    <div class="flex items-center justify-between pb-6 border-b border-stone-100">
+                        <div class="flex items-center space-x-2">
+                            <div class="w-8 h-8 rounded-lg bg-stone-900 flex items-center justify-center text-white">
+                                <i data-lucide="shield-check" class="w-4 h-4 text-emerald-400"></i>
+                            </div>
+                            <span class="font-display font-bold text-lg text-stone-900">VitalPath</span>
+                        </div>
+                        <button id="mobile-menu-close" type="button" class="p-2 text-stone-500 hover:text-stone-800 rounded-lg">
+                            <i data-lucide="x" class="w-5 h-5"></i>
+                        </button>
+                    </div>
+                    
+                    <nav class="mt-6 flex flex-col space-y-4 text-base font-medium text-stone-700">
+                        <a href="{% url 'core:home' %}" class="px-3 py-2 rounded-lg hover:bg-stone-50 transition">Home</a>
+                        <a href="{% url 'products:list' %}" class="px-3 py-2 rounded-lg hover:bg-stone-50 transition">Courses & Guides</a>
+                        <a href="{% url 'core:resources' %}" class="px-3 py-2 rounded-lg hover:bg-stone-50 transition">Free Resources & Videos</a>
+                        <a href="{% url 'core:about' %}" class="px-3 py-2 rounded-lg hover:bg-stone-50 transition">About the Mission</a>
+                        <a href="{% url 'core:contact' %}" class="px-3 py-2 rounded-lg hover:bg-stone-50 transition">Contact Us</a>
+                    </nav>
+                </div>
+
+                <div class="pt-6 border-t border-stone-100 flex flex-col space-y-3">
+                    <a href="{% url 'dashboard:login' %}" class="w-full text-center py-2.5 rounded-xl border border-stone-300 text-stone-800 font-medium text-sm hover:bg-stone-50 transition">
+                        Creator Login
+                    </a>
+                    <a href="{% url 'products:list' %}" class="w-full text-center py-2.5 rounded-xl bg-stone-900 text-white font-semibold text-sm hover:bg-emerald-800 transition">
+                        Explore Courses
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Global Alert Messages -->
+    {% if messages %}
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-4">
+        {% for message in messages %}
+        <div class="auto-dismiss-alert mb-3 p-4 rounded-xl flex items-start space-x-3 text-sm shadow-sm transition {% if message.tags == 'error' %}bg-rose-50 text-rose-800 border border-rose-200{% elif message.tags == 'success' %}bg-emerald-50 text-emerald-900 border border-emerald-200{% else %}bg-stone-100 text-stone-800 border border-stone-200{% endif %}">
+            <i data-lucide="{% if message.tags == 'error' %}alert-circle{% elif message.tags == 'success' %}check-circle-2{% else %}info{% endif %}" class="w-5 h-5 flex-shrink-0 mt-0.5 {% if message.tags == 'error' %}text-rose-600{% elif message.tags == 'success' %}text-emerald-700{% else %}text-stone-600{% endif %}"></i>
+            <div class="flex-1 font-medium">{{ message }}</div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- Main Content Slot -->
+    <main class="flex-1">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Professional Footer -->
+    <footer class="bg-stone-900 text-stone-400 pt-16 pb-12 border-t border-stone-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-12 pb-12 border-b border-stone-800">
+                
+                <!-- Brand & Mission Column -->
+                <div class="md:col-span-5 space-y-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-9 h-9 rounded-xl bg-emerald-800 flex items-center justify-center text-white">
+                            <i data-lucide="shield-check" class="w-5 h-5 text-emerald-300"></i>
+                        </div>
+                        <span class="font-display font-bold text-xl text-white tracking-tight">VitalPath Education</span>
+                    </div>
+                    <p class="text-sm text-stone-400 leading-relaxed max-w-sm">
+                        VitalPath is an independent digital health education platform dedicated to translating complex biological and lifestyle research into practical, accessible frameworks.
+                    </p>
+                    <div class="pt-2 flex items-center space-x-4 text-stone-400">
+                        <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="hover:text-emerald-400 transition" aria-label="YouTube Channel">
+                            <i data-lucide="youtube" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="hover:text-emerald-400 transition" aria-label="Telegram Announcements (Coming Soon)">
+                            <i data-lucide="send" class="w-5 h-5"></i>
+                        </a>
+                        <a href="mailto:hello@vitalpath.edu" class="hover:text-emerald-400 transition" aria-label="Email Inquiry">
+                            <i data-lucide="mail" class="w-5 h-5"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Education / Curriculum Navigation -->
+                <div class="md:col-span-3 space-y-3">
+                    <h3 class="text-xs font-semibold uppercase tracking-wider text-stone-200">Curriculum & Resources</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="{% url 'products:list' %}" class="hover:text-white transition">All Courses & Guides</a></li>
+                        <li><a href="{% url 'core:resources' %}" class="hover:text-white transition">Free Checklists & PDF Tools</a></li>
+                        <li><a href="{% url 'core:resources' %}#youtube" class="hover:text-white transition">YouTube Video Lectures</a></li>
+                        <li><a href="{% url 'core:about' %}" class="hover:text-white transition">Educational Philosophy</a></li>
+                    </ul>
+                </div>
+
+                <!-- Future Community / Operations -->
+                <div class="md:col-span-2 space-y-3">
+                    <h3 class="text-xs font-semibold uppercase tracking-wider text-stone-200">Expansion</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="{% url 'core:home' %}#membership-waitlist" class="hover:text-white transition">Private Membership</a></li>
+                        <li><a href="{% url 'core:home' %}#membership-waitlist" class="hover:text-white transition">Telegram Broadcasts</a></li>
+                        <li><a href="{% url 'core:contact' %}" class="hover:text-white transition">Contact & Support</a></li>
+                        <li><a href="{% url 'dashboard:overview' %}" class="text-emerald-400 hover:text-emerald-300 transition font-medium">Creator Portal</a></li>
+                    </ul>
+                </div>
+
+                <!-- Legal / Governance -->
+                <div class="md:col-span-2 space-y-3">
+                    <h3 class="text-xs font-semibold uppercase tracking-wider text-stone-200">Governance</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="{% url 'core:privacy' %}" class="hover:text-white transition">Privacy Policy</a></li>
+                        <li><a href="{% url 'core:terms' %}" class="hover:text-white transition">Terms & Disclaimer</a></li>
+                        <li><a href="{% url 'core:terms' %}#disclaimer" class="hover:text-white transition">Educational Scope</a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <!-- Bottom Disclaimer & Copyright -->
+            <div class="pt-8 flex flex-col md:flex-row items-center justify-between text-xs text-stone-500 space-y-4 md:space-y-0">
+                <div class="max-w-2xl text-stone-400">
+                    <strong class="text-stone-300">Educational Disclaimer:</strong> All content, digital courses, guides, and materials provided by VitalPath Education are strictly for informational and educational purposes only. They are not intended as clinical diagnoses, medical treatments, or medical advice.
+                </div>
+                <div>
+                    &copy; {{ CURRENT_YEAR }} VitalPath Education. All rights reserved.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- App JavaScript -->
+    <script src="{% static 'js/app.js' %}"></script>
+    <script>
+        // Ensure Lucide icons re-run after load
+        lucide.createIcons();
+    </script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

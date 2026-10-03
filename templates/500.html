@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}Server Error (500) | VitalPath Education{% endblock %}
+
+{% block content %}
+<section class="py-20 md:py-32 bg-[#FAFAF8] text-center">
+    <div class="max-w-md mx-auto px-4 space-y-6">
+        <div class="w-16 h-16 rounded-2xl bg-rose-50 text-rose-600 flex items-center justify-center mx-auto">
+            <i data-lucide="alert-triangle" class="w-8 h-8"></i>
+        </div>
+        <div class="space-y-2">
+            <span class="text-xs font-mono font-bold text-rose-700">ERROR 500</span>
+            <h1 class="text-3xl font-display font-bold text-stone-900">Server Error</h1>
+            <p class="text-xs text-stone-600 leading-relaxed">
+                An unexpected technical error occurred while rendering this page. Our team has been notified.
+            </p>
+        </div>
+        <div class="pt-2">
+            <a href="{% url 'core:home' %}" class="inline-flex items-center space-x-2 px-6 py-3 rounded-xl bg-stone-900 text-white font-semibold text-xs hover:bg-emerald-800 transition">
+                <span>Return to Homepage</span>
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}
