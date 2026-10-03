@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block title %}Purchase Confirmed | VitalPath Education{% endblock %}
+
+{% block content %}
+<section class="py-16 md:py-24 bg-[#FAFAF8]">
+    <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="bg-white rounded-3xl border border-stone-200/90 shadow-sm p-8 sm:p-12 text-center space-y-6">
+            
+            <!-- Success Icon -->
+            <div class="w-16 h-16 rounded-2xl bg-emerald-100 text-emerald-800 flex items-center justify-center mx-auto shadow-xs">
+                <i data-lucide="check" class="w-8 h-8 stroke-[3]"></i>
+            </div>
+
+            <!-- Title & Order Info -->
+            <div class="space-y-2">
+                <span class="text-xs font-bold uppercase tracking-widest text-emerald-700">Payment Successful</span>
+                <h1 class="text-3xl font-display font-bold text-stone-900">Your purchase is confirmed</h1>
+                {% if order %}
+                <p class="text-xs font-mono font-semibold text-stone-500">Order ID: {{ order.order_number }}</p>
+                {% endif %}
+            </div>
+
+            <!-- Order Summary Box -->
+            {% if order %}
+            <div class="bg-stone-50 rounded-2xl border border-stone-200/80 p-6 text-left space-y-4">
+                <div class="flex items-center justify-between border-b border-stone-200/60 pb-3">
+                    <span class="text-xs font-semibold text-stone-600">Product Enrolled:</span>
+                    <span class="text-xs font-bold text-stone-900">{{ order.primary_product_title }}</span>
+                </div>
+                <div class="flex items-center justify-between border-b border-stone-200/60 pb-3">
+                    <span class="text-xs font-semibold text-stone-600">Amount Paid:</span>
+                    <span class="text-xs font-bold text-stone-900">${{ order.total }} {{ order.currency }}</span>
+                </div>
+                <div class="flex items-center justify-between">
+                    <span class="text-xs font-semibold text-stone-600">Confirmation Sent To:</span>
+                    <span class="text-xs font-bold text-stone-900">{{ order.customer_email }}</span>
+                </div>
+            </div>
+            {% endif %}
+
+            <!-- What Happens Next Section -->
+            <div class="text-left space-y-3 pt-2">
+                <h3 class="font-display font-bold text-sm text-stone-900">What Happens Next</h3>
+                <div class="space-y-2.5 text-xs text-stone-600">
+                    <div class="flex items-start space-x-2.5">
+                        <i data-lucide="mail-check" class="w-4 h-4 text-emerald-700 flex-shrink-0 mt-0.5"></i>
+                        <span>An email receipt containing your digital guide downloads has been sent to your email.</span>
+                    </div>
+                    <div class="flex items-start space-x-2.5">
+                        <i data-lucide="download" class="w-4 h-4 text-emerald-700 flex-shrink-0 mt-0.5"></i>
+                        <span>You have instant, lifetime access to all included modules and future updates.</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="pt-6 border-t border-stone-100 flex flex-col sm:flex-row items-center justify-center gap-3">
+                <a href="{% url 'products:list' %}" class="w-full sm:w-auto px-6 py-3 rounded-xl bg-stone-900 hover:bg-stone-800 text-white font-semibold text-xs transition">
+                    Explore More Curricula
+                </a>
+                <a href="{% url 'dashboard:overview' %}" class="w-full sm:w-auto px-6 py-3 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 font-semibold text-xs transition flex items-center justify-center space-x-1.5">
+                    <i data-lucide="layout-dashboard" class="w-4 h-4"></i>
+                    <span>View in Creator Dashboard</span>
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+{% endblock %}
