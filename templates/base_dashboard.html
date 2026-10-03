@@ -1,0 +1,177 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-stone-100">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Creator Dashboard | VitalPath Education{% endblock %}</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        stone: {
+                            50: '#FAF9F6',
+                            100: '#F5F5F0',
+                            200: '#E7E5DF',
+                            300: '#D6D3CA',
+                            400: '#A8A296',
+                            500: '#78716C',
+                            600: '#57534E',
+                            700: '#44403C',
+                            800: '#292524',
+                            900: '#1C1917',
+                            950: '#0C0A09',
+                        },
+                        emerald: {
+                            50: '#F0FDF4',
+                            100: '#DCFCE7',
+                            200: '#BBF7D0',
+                            300: '#86EFAC',
+                            400: '#4ADE80',
+                            500: '#22C55E',
+                            600: '#16A34A',
+                            700: '#047857',
+                            800: '#065F46',
+                            900: '#064E3B',
+                            950: '#022C22',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+                        display: ['Outfit', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    {% block extra_head %}{% endblock %}
+</head>
+<body class="h-full antialiased font-sans text-stone-800">
+
+    <div class="min-h-full flex flex-col md:flex-row">
+        
+        <!-- Sidebar Navigation -->
+        <aside class="w-full md:w-64 bg-stone-900 text-stone-300 flex-shrink-0 flex flex-col justify-between border-r border-stone-800">
+            <div>
+                <!-- Brand Header -->
+                <div class="h-20 flex items-center justify-between px-6 border-b border-stone-800">
+                    <a href="{% url 'dashboard:overview' %}" class="flex items-center space-x-3">
+                        <div class="w-8 h-8 rounded-lg bg-emerald-800 flex items-center justify-center text-white">
+                            <i data-lucide="shield-check" class="w-4 h-4 text-emerald-300"></i>
+                        </div>
+                        <div>
+                            <span class="font-display font-bold text-base text-white tracking-tight">VitalPath</span>
+                            <span class="block text-[10px] font-semibold text-emerald-400 tracking-wider uppercase">Creator Studio</span>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Nav Links -->
+                <nav class="p-4 space-y-1.5 text-sm font-medium">
+                    <a href="{% url 'dashboard:overview' %}" class="flex items-center space-x-3 px-3.5 py-2.5 rounded-xl transition {% if request.resolver_match.url_name == 'overview' %}bg-stone-800 text-white font-semibold shadow-inner text-emerald-400{% else %}text-stone-400 hover:text-white hover:bg-stone-800/60{% endif %}">
+                        <i data-lucide="layout-dashboard" class="w-5 h-5 {% if request.resolver_match.url_name == 'overview' %}text-emerald-400{% endif %}"></i>
+                        <span>Overview</span>
+                    </a>
+
+                    <a href="{% url 'dashboard:products_list' %}" class="flex items-center space-x-3 px-3.5 py-2.5 rounded-xl transition {% if 'product' in request.resolver_match.url_name %}bg-stone-800 text-white font-semibold text-emerald-400{% else %}text-stone-400 hover:text-white hover:bg-stone-800/60{% endif %}">
+                        <i data-lucide="book-open" class="w-5 h-5 {% if 'product' in request.resolver_match.url_name %}text-emerald-400{% endif %}"></i>
+                        <span>Products & Courses</span>
+                    </a>
+
+                    <a href="{% url 'dashboard:orders_list' %}" class="flex items-center space-x-3 px-3.5 py-2.5 rounded-xl transition {% if 'order' in request.resolver_match.url_name %}bg-stone-800 text-white font-semibold text-emerald-400{% else %}text-stone-400 hover:text-white hover:bg-stone-800/60{% endif %}">
+                        <i data-lucide="credit-card" class="w-5 h-5 {% if 'order' in request.resolver_match.url_name %}text-emerald-400{% endif %}"></i>
+                        <span>Orders & Payments</span>
+                    </a>
+
+                    <a href="{% url 'dashboard:customers_list' %}" class="flex items-center space-x-3 px-3.5 py-2.5 rounded-xl transition {% if 'customer' in request.resolver_match.url_name %}bg-stone-800 text-white font-semibold text-emerald-400{% else %}text-stone-400 hover:text-white hover:bg-stone-800/60{% endif %}">
+                        <i data-lucide="users" class="w-5 h-5 {% if 'customer' in request.resolver_match.url_name %}text-emerald-400{% endif %}"></i>
+                        <span>Customers</span>
+                    </a>
+
+                    <a href="{% url 'dashboard:video_list' %}" class="flex items-center space-x-3 px-3.5 py-2.5 rounded-xl transition {% if 'video' in request.resolver_match.url_name %}bg-stone-800 text-white font-semibold text-emerald-400{% else %}text-stone-400 hover:text-white hover:bg-stone-800/60{% endif %}">
+                        <i data-lucide="youtube" class="w-5 h-5 {% if 'video' in request.resolver_match.url_name %}text-emerald-400{% endif %}"></i>
+                        <span>YouTube Content</span>
+                    </a>
+
+                    <a href="{% url 'dashboard:waitlist_list' %}" class="flex items-center space-x-3 px-3.5 py-2.5 rounded-xl transition {% if request.resolver_match.url_name == 'waitlist_list' %}bg-stone-800 text-white font-semibold text-emerald-400{% else %}text-stone-400 hover:text-white hover:bg-stone-800/60{% endif %}">
+                        <i data-lucide="sparkles" class="w-5 h-5 {% if request.resolver_match.url_name == 'waitlist_list' %}text-emerald-400{% endif %}"></i>
+                        <span>Membership Leads</span>
+                    </a>
+                </nav>
+            </div>
+
+            <!-- Creator Profile & Quick Links -->
+            <div class="p-4 border-t border-stone-800 space-y-2">
+                <a href="{% url 'core:home' %}" target="_blank" class="flex items-center justify-between px-3.5 py-2 rounded-xl text-xs font-medium text-stone-400 hover:text-white hover:bg-stone-800/50 transition">
+                    <span class="flex items-center space-x-2">
+                        <i data-lucide="external-link" class="w-4 h-4"></i>
+                        <span>View Live Website</span>
+                    </span>
+                    <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+                </a>
+
+                <div class="pt-2 flex items-center justify-between px-3 py-2 bg-stone-800/60 rounded-xl border border-stone-700/50">
+                    <div class="flex items-center space-x-2.5">
+                        <div class="w-7 h-7 rounded-full bg-emerald-700 text-white flex items-center justify-center font-bold text-xs">
+                            {{ user.first_name|default:user.username|slice:":1"|upper }}
+                        </div>
+                        <div class="overflow-hidden">
+                            <p class="text-xs font-semibold text-stone-200 truncate">{{ user.get_full_name|default:user.username }}</p>
+                            <p class="text-[10px] text-emerald-400 truncate">Creator</p>
+                        </div>
+                    </div>
+                    <a href="{% url 'dashboard:logout' %}" class="text-stone-400 hover:text-rose-400 p-1 rounded-lg transition" title="Log Out">
+                        <i data-lucide="log-out" class="w-4 h-4"></i>
+                    </a>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="flex-1 flex flex-col min-w-0 bg-[#F5F5F0] overflow-y-auto">
+            
+            <!-- Top Bar -->
+            <div class="bg-white border-b border-stone-200/80 px-6 py-4 flex items-center justify-between">
+                <div>
+                    <h1 class="text-xl font-display font-bold text-stone-900">{% block page_title %}Dashboard{% endblock %}</h1>
+                    <p class="text-xs text-stone-500">{% block page_subtitle %}Manage educational products, customer records, and Stripe orders.{% endblock %}</p>
+                </div>
+                <div class="flex items-center space-x-3">
+                    {% block top_actions %}{% endblock %}
+                </div>
+            </div>
+
+            <!-- Flash Messages inside Dashboard -->
+            {% if messages %}
+            <div class="px-6 pt-4">
+                {% for message in messages %}
+                <div class="p-3.5 rounded-xl text-xs font-medium shadow-sm flex items-center space-x-2.5 {% if message.tags == 'error' %}bg-rose-50 text-rose-800 border border-rose-200{% elif message.tags == 'success' %}bg-emerald-50 text-emerald-800 border border-emerald-200{% else %}bg-stone-50 text-stone-800 border border-stone-200{% endif %}">
+                    <i data-lucide="{% if message.tags == 'error' %}alert-circle{% elif message.tags == 'success' %}check-circle-2{% else %}info{% endif %}" class="w-4 h-4 flex-shrink-0"></i>
+                    <span>{{ message }}</span>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            <!-- Page Body Slot -->
+            <div class="p-6">
+                {% block dashboard_content %}{% endblock %}
+            </div>
+
+        </main>
+
+    </div>
+
+    <script src="{% static 'js/app.js' %}"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

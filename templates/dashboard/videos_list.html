@@ -1,0 +1,87 @@
+{% extends 'base_dashboard.html' %}
+
+{% block page_title %}YouTube Video Content Management{% endblock %}
+{% block page_subtitle %}Manage curated video lessons, durations, categories, and homepage features.{% endblock %}
+
+{% block top_actions %}
+<a href="{% url 'dashboard:video_create' %}" class="inline-flex items-center space-x-2 text-xs font-semibold px-4 py-2 rounded-xl bg-stone-900 hover:bg-emerald-800 text-white transition shadow-xs">
+    <i data-lucide="plus" class="w-4 h-4"></i>
+    <span>+ Add Video</span>
+</a>
+{% endblock %}
+
+{% block dashboard_content %}
+<div class="space-y-6">
+
+    <div class="bg-white rounded-2xl border border-stone-200/80 shadow-xs overflow-hidden">
+        <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs">
+                <thead class="bg-stone-50 text-stone-500 uppercase tracking-wider font-semibold border-b border-stone-200/80">
+                    <tr>
+                        <th class="px-6 py-3.5">Video Lesson</th>
+                        <th class="px-6 py-3.5">Category</th>
+                        <th class="px-6 py-3.5">Duration</th>
+                        <th class="px-6 py-3.5">Homepage Featured</th>
+                        <th class="px-6 py-3.5">Status</th>
+                        <th class="px-6 py-3.5 text-right">Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-stone-100">
+                    {% for video in videos %}
+                    <tr class="hover:bg-stone-50/80 transition">
+                        <td class="px-6 py-4">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-16 h-10 bg-stone-100 rounded-lg overflow-hidden flex-shrink-0">
+                                    <img src="{{ video.computed_thumbnail }}" alt="{{ video.title }}" class="w-full h-full object-cover">
+                                </div>
+                                <div class="overflow-hidden">
+                                    <h4 class="font-display font-bold text-sm text-stone-900 truncate max-w-sm">{{ video.title }}</h4>
+                                    <p class="text-[11px] text-stone-400 font-mono truncate">ID: {{ video.video_id }}</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="px-6 py-4 text-stone-600">
+                            {{ video.category }}
+                        </td>
+                        <td class="px-6 py-4 font-mono text-stone-700">
+                            {{ video.duration }}
+                        </td>
+                        <td class="px-6 py-4">
+                            {% if video.featured %}
+                            <span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold text-[10px]">Featured</span>
+                            {% else %}
+                            <span class="text-stone-400 text-[10px]">Standard</span>
+                            {% endif %}
+                        </td>
+                        <td class="px-6 py-4">
+                            {% if video.is_active %}
+                            <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-50 text-emerald-800 border border-emerald-200">Active</span>
+                            {% else %}
+                            <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-stone-100 text-stone-600">Hidden</span>
+                            {% endif %}
+                        </td>
+                        <td class="px-6 py-4 text-right space-x-2">
+                            <a href="{{ video.watch_url }}" target="_blank" class="inline-flex items-center text-xs font-semibold px-2.5 py-1.5 rounded-lg text-stone-600 hover:text-stone-900 hover:bg-stone-100 transition">
+                                <i data-lucide="external-link" class="w-3.5 h-3.5 mr-1"></i>
+                                <span>Watch</span>
+                            </a>
+                            <a href="{% url 'dashboard:video_edit' pk=video.pk %}" class="inline-flex items-center text-xs font-semibold px-3 py-1.5 rounded-lg bg-stone-100 hover:bg-stone-900 hover:text-white text-stone-800 transition">
+                                <i data-lucide="edit-3" class="w-3.5 h-3.5 mr-1"></i>
+                                <span>Edit</span>
+                            </a>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="6" class="px-6 py-8 text-center text-stone-500">
+                            No videos added yet.
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

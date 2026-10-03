@@ -1,0 +1,103 @@
+{% extends 'base_dashboard.html' %}
+
+{% block page_title %}Products & Curricula Management{% endblock %}
+{% block page_subtitle %}Manage your digital guides, set pricing, toggle publishing status, and view sales performance.{% endblock %}
+
+{% block top_actions %}
+<a href="{% url 'dashboard:product_create' %}" class="inline-flex items-center space-x-2 text-xs font-semibold px-4 py-2 rounded-xl bg-stone-900 hover:bg-emerald-800 text-white transition shadow-xs">
+    <i data-lucide="plus" class="w-4 h-4"></i>
+    <span>+ New Product</span>
+</a>
+{% endblock %}
+
+{% block dashboard_content %}
+<div class="space-y-6">
+
+    <div class="bg-white rounded-2xl border border-stone-200/80 shadow-xs overflow-hidden">
+        
+        <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs">
+                <thead class="bg-stone-50 text-stone-500 uppercase tracking-wider font-semibold border-b border-stone-200/80">
+                    <tr>
+                        <th class="px-6 py-3.5">Product Title</th>
+                        <th class="px-6 py-3.5">Category</th>
+                        <th class="px-6 py-3.5">Price</th>
+                        <th class="px-6 py-3.5">Status</th>
+                        <th class="px-6 py-3.5">Sales</th>
+                        <th class="px-6 py-3.5 text-right">Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-stone-100">
+                    {% for product in products %}
+                    <tr class="hover:bg-stone-50/80 transition">
+                        <td class="px-6 py-4">
+                            <div class="flex items-center space-x-3">
+                                {% if product.featured %}
+                                <span title="Featured in store" class="text-amber-500">
+                                    <i data-lucide="star" class="w-4 h-4 fill-amber-400 text-amber-500"></i>
+                                </span>
+                                {% endif %}
+                                <div>
+                                    <h3 class="font-display font-bold text-sm text-stone-900">{{ product.title }}</h3>
+                                    <p class="text-[11px] text-stone-500 font-mono">/courses/{{ product.slug }}/</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="px-6 py-4 text-stone-600">
+                            {{ product.category.name|default:"Unassigned" }}
+                        </td>
+                        <td class="px-6 py-4 font-bold text-stone-900 text-sm">
+                            ${{ product.price }}
+                        </td>
+                        <td class="px-6 py-4">
+                            {% if product.status == 'published' %}
+                            <span class="inline-flex items-center space-x-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-50 text-emerald-800 border border-emerald-200">
+                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>
+                                <span>Published</span>
+                            </span>
+                            {% elif product.status == 'draft' %}
+                            <span class="inline-flex items-center space-x-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-amber-50 text-amber-800 border border-amber-200">
+                                <span class="w-1.5 h-1.5 rounded-full bg-amber-600"></span>
+                                <span>Draft</span>
+                            </span>
+                            {% else %}
+                            <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-stone-100 text-stone-600">{{ product.get_status_display }}</span>
+                            {% endif %}
+                        </td>
+                        <td class="px-6 py-4 font-semibold text-stone-700">
+                            {{ product.sales_count|default:0 }} orders
+                        </td>
+                        <td class="px-6 py-4 text-right space-x-2">
+                            <a href="{% url 'products:detail' slug=product.slug %}" target="_blank" class="inline-flex items-center text-xs font-semibold px-2.5 py-1.5 rounded-lg text-stone-600 hover:text-stone-900 hover:bg-stone-100 transition" title="Preview Public Page">
+                                <i data-lucide="eye" class="w-3.5 h-3.5 mr-1"></i>
+                                <span>View</span>
+                            </a>
+
+                            <form action="{% url 'dashboard:product_toggle_status' slug=product.slug %}" method="POST" class="inline">
+                                {% csrf_token %}
+                                <button type="submit" class="inline-flex items-center text-xs font-semibold px-2.5 py-1.5 rounded-lg {% if product.status == 'published' %}text-amber-700 hover:bg-amber-50{% else %}text-emerald-700 hover:bg-emerald-50{% endif %} transition">
+                                    {% if product.status == 'published' %}Unpublish{% else %}Publish{% endif %}
+                                </button>
+                            </form>
+
+                            <a href="{% url 'dashboard:product_edit' slug=product.slug %}" class="inline-flex items-center text-xs font-semibold px-3 py-1.5 rounded-lg bg-stone-100 hover:bg-stone-900 hover:text-white text-stone-800 transition">
+                                <i data-lucide="edit-3" class="w-3.5 h-3.5 mr-1"></i>
+                                <span>Edit</span>
+                            </a>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="6" class="px-6 py-8 text-center text-stone-500">
+                            No products created yet. Click "+ New Product" to create your first educational guide.
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,108 @@
+{% extends 'base_dashboard.html' %}
+
+{% block page_title %}Orders & Payment Records{% endblock %}
+{% block page_subtitle %}Review customer purchases, Stripe payment statuses, and digital access fulfillment.{% endblock %}
+
+{% block dashboard_content %}
+<div class="space-y-6">
+
+    <!-- Filters and Search -->
+    <div class="bg-white p-4 rounded-2xl border border-stone-200/80 shadow-xs flex flex-col md:flex-row items-center justify-between gap-4">
+        
+        <div class="flex flex-wrap items-center gap-2 w-full md:w-auto">
+            <a href="{% url 'dashboard:orders_list' %}" class="px-3.5 py-1.5 rounded-xl text-xs font-semibold transition {% if not status_filter %}bg-stone-900 text-white{% else %}bg-stone-100 text-stone-600 hover:bg-stone-200{% endif %}">
+                All Orders
+            </a>
+            <a href="{% url 'dashboard:orders_list' %}?status=paid" class="px-3.5 py-1.5 rounded-xl text-xs font-semibold transition {% if status_filter == 'paid' %}bg-stone-900 text-white{% else %}bg-stone-100 text-stone-600 hover:bg-stone-200{% endif %}">
+                Paid
+            </a>
+            <a href="{% url 'dashboard:orders_list' %}?status=pending" class="px-3.5 py-1.5 rounded-xl text-xs font-semibold transition {% if status_filter == 'pending' %}bg-stone-900 text-white{% else %}bg-stone-100 text-stone-600 hover:bg-stone-200{% endif %}">
+                Pending
+            </a>
+        </div>
+
+        <form action="{% url 'dashboard:orders_list' %}" method="GET" class="w-full md:w-72 flex items-center relative">
+            <i data-lucide="search" class="w-4 h-4 text-stone-400 absolute left-3.5"></i>
+            <input type="text" name="q" value="{{ query }}" placeholder="Search by order ID, email..." class="w-full pl-10 pr-4 py-2 rounded-xl border border-stone-200 text-xs bg-stone-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-700/20 focus:border-emerald-700 transition">
+        </form>
+
+    </div>
+
+    <!-- Orders Table -->
+    <div class="bg-white rounded-2xl border border-stone-200/80 shadow-xs overflow-hidden">
+        <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs">
+                <thead class="bg-stone-50 text-stone-500 uppercase tracking-wider font-semibold border-b border-stone-200/80">
+                    <tr>
+                        <th class="px-6 py-3.5">Order ID</th>
+                        <th class="px-6 py-3.5">Customer</th>
+                        <th class="px-6 py-3.5">Purchased Guide</th>
+                        <th class="px-6 py-3.5">Amount</th>
+                        <th class="px-6 py-3.5">Payment</th>
+                        <th class="px-6 py-3.5">Fulfillment Email</th>
+                        <th class="px-6 py-3.5 text-right">Date</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-stone-100">
+                    {% for order in orders %}
+                    <tr class="hover:bg-stone-50/80 transition">
+                        <td class="px-6 py-4 font-mono font-semibold text-stone-900">
+                            <a href="{% url 'dashboard:order_detail' pk=order.pk %}" class="hover:underline text-emerald-800">
+                                {{ order.order_number }}
+                            </a>
+                        </td>
+                        <td class="px-6 py-4">
+                            <a href="{% url 'dashboard:customer_detail' pk=order.customer.pk %}" class="font-semibold text-stone-900 hover:underline">
+                                {{ order.customer_name|default:order.customer.name|default:"Student" }}
+                            </a>
+                            <div class="text-[11px] text-stone-500">{{ order.customer_email }}</div>
+                        </td>
+                        <td class="px-6 py-4 text-stone-700 max-w-xs truncate">
+                            {{ order.primary_product_title }}
+                        </td>
+                        <td class="px-6 py-4 font-bold text-stone-900 text-sm">
+                            ${{ order.total }} <span class="text-[10px] text-stone-400 font-normal uppercase">{{ order.currency }}</span>
+                        </td>
+                        <td class="px-6 py-4">
+                            {% if order.payment_status == 'paid' %}
+                            <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-50 text-emerald-800 border border-emerald-200">
+                                Paid
+                            </span>
+                            {% elif order.payment_status == 'pending' %}
+                            <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-amber-50 text-amber-800 border border-amber-200">
+                                Pending
+                            </span>
+                            {% else %}
+                            <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-stone-100 text-stone-700">
+                                {{ order.get_payment_status_display }}
+                            </span>
+                            {% endif %}
+                        </td>
+                        <td class="px-6 py-4">
+                            {% if order.email_sent %}
+                            <span class="text-emerald-700 inline-flex items-center text-[11px] font-semibold">
+                                <i data-lucide="check-circle-2" class="w-3.5 h-3.5 mr-1"></i>
+                                <span>Sent</span>
+                            </span>
+                            {% else %}
+                            <span class="text-stone-400 text-[11px]">Queued</span>
+                            {% endif %}
+                        </td>
+                        <td class="px-6 py-4 text-right text-stone-500 font-mono text-[11px]">
+                            {{ order.created_at|date:"M d, Y H:i" }}
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="7" class="px-6 py-8 text-center text-stone-500">
+                            No orders found matching your search.
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
