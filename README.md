@@ -8,7 +8,6 @@
 
 **Live Demo Storefront:** [https://vitalpath-azure.vercel.app/](https://vitalpath-azure.vercel.app/)  
 **Creator Studio Login:** [https://vitalpath-azure.vercel.app/dashboard/login/](https://vitalpath-azure.vercel.app/dashboard/login/)  
-*(Demo Credentials: `creator@vitalpath.edu` / `VitalPath2026!`)*
 
 ---
 

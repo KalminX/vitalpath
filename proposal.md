@@ -14,8 +14,6 @@ Rather than asking you to imagine what I can build, **I took the initiative to b
 
 * 🌐 **Live Storefront Prototype:** [https://vitalpath-azure.vercel.app/](https://vitalpath-azure.vercel.app/)
 * 🔐 **Creator Studio Login:** [https://vitalpath-azure.vercel.app/dashboard/login/](https://vitalpath-azure.vercel.app/dashboard/login/)
-  * **Email:** `creator@vitalpath.edu`
-  * **Password:** `VitalPath2026!`
 * 📦 **GitHub Repository:** Full open codebase with 18 automated tests passing, documented deployment scripts, and modular architecture.
 
 You can click through the live site right now, explore the course syllabi, test the checkout flow, and log into the Creator Studio.

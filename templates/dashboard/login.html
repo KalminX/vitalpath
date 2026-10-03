@@ -17,17 +17,6 @@
                 <p class="text-xs text-stone-500">Sign in to manage courses, customers, and Stripe orders.</p>
             </div>
 
-            <!-- Demo Credentials Helper Banner -->
-            <div class="p-3.5 rounded-xl bg-emerald-50 border border-emerald-200 text-xs text-emerald-950 space-y-1">
-                <div class="font-bold flex items-center space-x-1.5 text-emerald-800">
-                    <i data-lucide="key" class="w-3.5 h-3.5"></i>
-                    <span>Demo Creator Access</span>
-                </div>
-                <div class="font-mono text-[11px] text-emerald-900">
-                    Email: <span class="font-bold select-all">creator@vitalpath.edu</span><br>
-                    Password: <span class="font-bold select-all">VitalPath2026!</span>
-                </div>
-            </div>
 
             <form method="POST" action="{% url 'dashboard:login' %}" class="space-y-4">
                 {% csrf_token %}
