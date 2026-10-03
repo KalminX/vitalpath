@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background-color: #FAFAF8; color: #1C1917; margin: 0; padding: 30px 15px; }
+  .container { max-width: 580px; margin: 0 auto; background: #ffffff; border: 1px solid #E7E5DF; border-radius: 12px; padding: 28px; }
+  .badge { background: #DCFCE7; color: #065F46; padding: 4px 8px; border-radius: 6px; font-size: 11px; font-weight: bold; }
+  .message-box { background: #FAF9F6; border-left: 3px solid #047857; padding: 16px; margin: 16px 0; font-size: 14px; line-height: 1.5; }
+</style>
+</head>
+<body>
+<div class="container">
+  <span class="badge">NEW INQUIRY</span>
+  <h2 style="margin: 12px 0; font-size: 18px;">Contact Message Received</h2>
+  
+  <p style="font-size: 13px; color: #57534E;">
+    <strong>From:</strong> {{ message.name }} &lt;{{ message.email }}&gt;<br>
+    <strong>Subject:</strong> {{ message.subject|default:"General Inquiry" }}
+  </p>
+
+  <div class="message-box">
+    {{ message.message|linebreaks }}
+  </div>
+
+  <p style="font-size: 12px; color: #78716C;">
+    You can reply directly to this email to respond to the student.
+  </p>
+</div>
+</body>
+</html>

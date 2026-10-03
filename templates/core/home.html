@@ -1,0 +1,482 @@
+{% extends 'base.html' %}
+{% load humanize %}
+
+{% block title %}VitalPath Education | Practical Health Education, Made Clear{% endblock %}
+
+{% block content %}
+
+<!-- 1. HERO SECTION -->
+<section class="relative overflow-hidden pt-12 pb-20 md:pt-20 md:pb-28 border-b border-stone-200/80 bg-gradient-to-b from-stone-50 via-stone-50 to-[#FAFAF8]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+        <div class="max-w-3xl mx-auto text-center space-y-6">
+            
+            <!-- Category Tag -->
+            <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-semibold tracking-wide">
+                <i data-lucide="sparkles" class="w-3.5 h-3.5 text-emerald-600"></i>
+                <span>Independent Science-Informed Curriculum</span>
+            </div>
+
+            <!-- Main Headline -->
+            <h1 class="text-4xl sm:text-5xl md:text-6xl font-display font-extrabold text-stone-900 tracking-tight leading-[1.15]">
+                Practical health education, <br class="hidden sm:inline">
+                <span class="text-emerald-800">made easier to understand.</span>
+            </h1>
+
+            <!-- Supporting Paragraph -->
+            <p class="text-lg sm:text-xl text-stone-600 leading-relaxed font-normal max-w-2xl mx-auto">
+                VitalPath provides structured, non-dogmatic educational guides and curricula designed to help curious learners understand human biology, daily nutrition, and sustainable habits with total clarity.
+            </p>
+
+            <!-- Call to Actions -->
+            <div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="{% url 'products:list' %}" class="w-full sm:w-auto inline-flex items-center justify-center space-x-2.5 px-7 py-3.5 rounded-xl bg-stone-900 hover:bg-emerald-800 text-white font-semibold text-base shadow-sm hover:shadow transition transform active:scale-95">
+                    <span>Explore Courses</span>
+                    <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </a>
+                <a href="#youtube-lessons" class="w-full sm:w-auto inline-flex items-center justify-center space-x-2.5 px-7 py-3.5 rounded-xl bg-white hover:bg-stone-100 text-stone-800 font-semibold text-base border border-stone-300 shadow-sm transition">
+                    <i data-lucide="youtube" class="w-4 h-4 text-rose-600"></i>
+                    <span>Watch on YouTube</span>
+                </a>
+            </div>
+
+            <!-- Trust Metrics -->
+            <div class="pt-8 flex items-center justify-center space-x-8 text-xs font-medium text-stone-500">
+                <div class="flex items-center space-x-1.5">
+                    <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600"></i>
+                    <span>Peer-Reviewed Literature</span>
+                </div>
+                <div class="flex items-center space-x-1.5">
+                    <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600"></i>
+                    <span>No Medical Claims</span>
+                </div>
+                <div class="flex items-center space-x-1.5">
+                    <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600"></i>
+                    <span>Instant Digital Access</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- 2. TRUST / POSITIONING SECTION -->
+<section class="py-16 md:py-24 bg-white border-b border-stone-200/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="max-w-2xl mx-auto text-center space-y-3 mb-16">
+            <h2 class="text-xs font-bold uppercase tracking-widest text-emerald-800">The VitalPath Standard</h2>
+            <p class="text-3xl font-display font-bold text-stone-900">Education built for comprehension, not sensationalism.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+            
+            <!-- Pillar 1 -->
+            <div class="p-6 rounded-2xl bg-stone-50 border border-stone-200/70 hover:border-emerald-700/40 transition flex flex-col space-y-3">
+                <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold">
+                    <i data-lucide="layers" class="w-6 h-6"></i>
+                </div>
+                <h3 class="font-display font-bold text-lg text-stone-900">Structured Learning</h3>
+                <p class="text-sm text-stone-600 leading-relaxed">
+                    Step-by-step sequential modules that build from core physiology to daily lifestyle integration without skipping foundational context.
+                </p>
+            </div>
+
+            <!-- Pillar 2 -->
+            <div class="p-6 rounded-2xl bg-stone-50 border border-stone-200/70 hover:border-emerald-700/40 transition flex flex-col space-y-3">
+                <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold">
+                    <i data-lucide="file-text" class="w-6 h-6"></i>
+                </div>
+                <h3 class="font-display font-bold text-lg text-stone-900">Accessible Resources</h3>
+                <p class="text-sm text-stone-600 leading-relaxed">
+                    Downloadable companion guides, printable summaries, grocery blueprints, and field references you can review anytime.
+                </p>
+            </div>
+
+            <!-- Pillar 3 -->
+            <div class="p-6 rounded-2xl bg-stone-50 border border-stone-200/70 hover:border-emerald-700/40 transition flex flex-col space-y-3">
+                <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold">
+                    <i data-lucide="compass" class="w-6 h-6"></i>
+                </div>
+                <h3 class="font-display font-bold text-lg text-stone-900">Practical Explanations</h3>
+                <p class="text-sm text-stone-600 leading-relaxed">
+                    Complex metabolic and biological concepts broken down into intuitive mental models and low-friction daily applications.
+                </p>
+            </div>
+
+            <!-- Pillar 4 -->
+            <div class="p-6 rounded-2xl bg-stone-50 border border-stone-200/70 hover:border-emerald-700/40 transition flex flex-col space-y-3">
+                <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold">
+                    <i data-lucide="sparkles" class="w-6 h-6"></i>
+                </div>
+                <h3 class="font-display font-bold text-lg text-stone-900">Expanding Library</h3>
+                <p class="text-sm text-stone-600 leading-relaxed">
+                    A steadily growing repository of video breakdowns, digital field guides, and community insights updated on an ongoing schedule.
+                </p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- 3. FEATURED COURSES SECTION -->
+<section class="py-16 md:py-24 bg-[#FAFAF8] border-b border-stone-200/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+            <div class="space-y-2">
+                <span class="text-xs font-bold uppercase tracking-widest text-emerald-800">Featured Curricula</span>
+                <h2 class="text-3xl sm:text-4xl font-display font-bold text-stone-900">Structured Educational Guides</h2>
+            </div>
+            <a href="{% url 'products:list' %}" class="mt-4 md:mt-0 inline-flex items-center space-x-1.5 text-sm font-semibold text-emerald-800 hover:text-emerald-700 group">
+                <span>View all products</span>
+                <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition"></i>
+            </a>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {% for product in featured_products %}
+            <div class="bg-white rounded-2xl border border-stone-200/80 hover:border-stone-400/80 hover:shadow-md transition-all flex flex-col justify-between overflow-hidden group">
+                
+                <!-- Product Image or Header Visual -->
+                <div class="relative h-48 bg-stone-100 overflow-hidden">
+                    <img src="{{ product.cover_image_url|default:'https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=800&auto=format&fit=crop&q=80' }}" alt="{{ product.title }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <div class="absolute top-3 right-3 bg-white/95 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-stone-900 shadow-sm border border-stone-200">
+                        ${{ product.price }}
+                    </div>
+                    {% if product.category %}
+                    <div class="absolute top-3 left-3 bg-stone-900/80 backdrop-blur-sm text-white px-2.5 py-0.5 rounded-md text-[11px] font-semibold">
+                        {{ product.category.name }}
+                    </div>
+                    {% endif %}
+                </div>
+
+                <!-- Product Body -->
+                <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+                    <div class="space-y-2">
+                        <div class="flex items-center space-x-2 text-xs text-stone-500 font-medium">
+                            <i data-lucide="clock" class="w-3.5 h-3.5"></i>
+                            <span>{{ product.estimated_duration }}</span>
+                            <span>•</span>
+                            <span>{{ product.modules.count|default:8 }} Modules</span>
+                        </div>
+                        <h3 class="text-xl font-display font-bold text-stone-900 group-hover:text-emerald-800 transition">
+                            <a href="{% url 'products:detail' slug=product.slug %}">{{ product.title }}</a>
+                        </h3>
+                        <p class="text-xs text-stone-600 line-clamp-2 leading-relaxed">
+                            {{ product.short_description }}
+                        </p>
+                    </div>
+
+                    <!-- What's included preview -->
+                    <div class="pt-3 border-t border-stone-100 space-y-1.5 text-xs text-stone-600">
+                        {% for item in product.included_items_list|slice:":2" %}
+                        <div class="flex items-start space-x-2">
+                            <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600 flex-shrink-0 mt-0.5"></i>
+                            <span class="truncate">{{ item }}</span>
+                        </div>
+                        {% endfor %}
+                    </div>
+
+                    <!-- Action Link -->
+                    <div class="pt-4 flex items-center justify-between border-t border-stone-100">
+                        <a href="{% url 'products:detail' slug=product.slug %}" class="w-full text-center py-2.5 rounded-xl bg-stone-100 hover:bg-stone-900 hover:text-white text-stone-800 font-semibold text-xs transition flex items-center justify-center space-x-2">
+                            <span>Learn More & Purchase</span>
+                            <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                        </a>
+                    </div>
+
+                </div>
+
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+</section>
+
+
+<!-- 4. YOUTUBE SECTION -->
+<section id="youtube-lessons" class="py-16 md:py-24 bg-white border-b border-stone-200/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+            <div class="space-y-2">
+                <div class="inline-flex items-center space-x-1.5 text-xs font-bold uppercase tracking-widest text-rose-600">
+                    <i data-lucide="youtube" class="w-4 h-4"></i>
+                    <span>Free Video Education</span>
+                </div>
+                <h2 class="text-3xl sm:text-4xl font-display font-bold text-stone-900">Latest Lessons & Breakdowns</h2>
+            </div>
+            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="mt-4 md:mt-0 inline-flex items-center space-x-2 text-sm font-semibold px-4 py-2 rounded-xl bg-stone-100 hover:bg-stone-200 text-stone-800 transition">
+                <span>Visit YouTube Channel</span>
+                <i data-lucide="external-link" class="w-4 h-4"></i>
+            </a>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {% for video in youtube_videos %}
+            <div class="group bg-stone-50 rounded-2xl border border-stone-200/70 overflow-hidden flex flex-col justify-between hover:shadow-md transition">
+                
+                <!-- Thumbnail -->
+                <div class="relative aspect-video bg-stone-200 overflow-hidden">
+                    <img src="{{ video.computed_thumbnail }}" alt="{{ video.title }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <div class="absolute bottom-2 right-2 bg-stone-900/90 text-white text-[11px] font-mono px-2 py-0.5 rounded shadow">
+                        {{ video.duration }}
+                    </div>
+                    <div class="absolute inset-0 bg-stone-900/20 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+                        <div class="w-10 h-10 rounded-full bg-white/90 text-rose-600 flex items-center justify-center shadow">
+                            <i data-lucide="play" class="w-5 h-5 fill-rose-600 ml-0.5"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Content -->
+                <div class="p-4 flex-1 flex flex-col justify-between space-y-3">
+                    <div class="space-y-1">
+                        <span class="text-[10px] font-semibold text-emerald-700 uppercase tracking-wider">{{ video.category }}</span>
+                        <h4 class="font-display font-bold text-sm text-stone-900 leading-snug line-clamp-2 group-hover:text-emerald-800 transition">
+                            {{ video.title }}
+                        </h4>
+                        <p class="text-xs text-stone-600 line-clamp-2 pt-1">
+                            {{ video.description }}
+                        </p>
+                    </div>
+
+                    <a href="{{ video.watch_url }}" target="_blank" rel="noopener noreferrer" class="text-xs font-semibold text-stone-700 hover:text-stone-900 inline-flex items-center space-x-1 pt-2">
+                        <span>Watch Video Lesson</span>
+                        <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+                    </a>
+                </div>
+
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+</section>
+
+
+<!-- 5. LEARNING PATH / METHODOLOGY -->
+<section class="py-16 md:py-24 bg-stone-900 text-white border-b border-stone-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="max-w-2xl mx-auto text-center space-y-3 mb-16">
+            <span class="text-xs font-bold uppercase tracking-widest text-emerald-400">The VitalPath Framework</span>
+            <h2 class="text-3xl sm:text-4xl font-display font-bold text-white">How Your Health Literacy Evolves</h2>
+            <p class="text-sm text-stone-400">A clear, non-overwhelming 4-step progression from initial curiosity to sustainable daily habits.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
+            
+            <!-- Step 1 -->
+            <div class="bg-stone-800/80 p-6 rounded-2xl border border-stone-700 space-y-3 relative">
+                <div class="w-10 h-10 rounded-xl bg-emerald-900/60 border border-emerald-500/40 text-emerald-300 font-display font-bold flex items-center justify-center text-sm">
+                    01
+                </div>
+                <h3 class="text-xl font-display font-bold text-white">Discover</h3>
+                <p class="text-xs text-stone-400 leading-relaxed">
+                    Explore free YouTube video lessons and foundational articles to identify core physiological concepts without hype.
+                </p>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="bg-stone-800/80 p-6 rounded-2xl border border-stone-700 space-y-3 relative">
+                <div class="w-10 h-10 rounded-xl bg-emerald-900/60 border border-emerald-500/40 text-emerald-300 font-display font-bold flex items-center justify-center text-sm">
+                    02
+                </div>
+                <h3 class="text-xl font-display font-bold text-white">Learn</h3>
+                <p class="text-xs text-stone-400 leading-relaxed">
+                    Enroll in structured digital guides that break down nutrition, circadian biology, and energy dynamics into comprehensive modules.
+                </p>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="bg-stone-800/80 p-6 rounded-2xl border border-stone-700 space-y-3 relative">
+                <div class="w-10 h-10 rounded-xl bg-emerald-900/60 border border-emerald-500/40 text-emerald-300 font-display font-bold flex items-center justify-center text-sm">
+                    03
+                </div>
+                <h3 class="text-xl font-display font-bold text-white">Apply</h3>
+                <p class="text-xs text-stone-400 leading-relaxed">
+                    Utilize downloadable worksheets, checklists, and grocery matrices to construct your personal baseline with low friction.
+                </p>
+            </div>
+
+            <!-- Step 4 -->
+            <div class="bg-stone-800/80 p-6 rounded-2xl border border-stone-700 space-y-3 relative">
+                <div class="w-10 h-10 rounded-xl bg-emerald-900/60 border border-emerald-500/40 text-emerald-300 font-display font-bold flex items-center justify-center text-sm">
+                    04
+                </div>
+                <h3 class="text-xl font-display font-bold text-white">Go Deeper</h3>
+                <p class="text-xs text-stone-400 leading-relaxed">
+                    Join private discussions, Telegram announcements, and advanced masterclasses as our ecosystem grows.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+
+<!-- 6. DIGITAL PRODUCTS OVERVIEW -->
+<section class="py-16 md:py-24 bg-white border-b border-stone-200/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            
+            <div class="lg:col-span-6 space-y-6">
+                <span class="text-xs font-bold uppercase tracking-widest text-emerald-800">Complete Toolkits</span>
+                <h2 class="text-3xl sm:text-4xl font-display font-bold text-stone-900 leading-tight">
+                    Self-paced digital guides designed for real-world life.
+                </h2>
+                <p class="text-base text-stone-600 leading-relaxed">
+                    Every digital product produced by VitalPath is crafted with high editorial standards. You get immediate lifetime access, downloadable companion PDFs for offline reference, and structured knowledge checks.
+                </p>
+
+                <div class="space-y-3 text-sm text-stone-700">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-6 h-6 rounded-full bg-emerald-100 text-emerald-800 flex items-center justify-center">
+                            <i data-lucide="check" class="w-4 h-4"></i>
+                        </div>
+                        <span>Formatted for phone, tablet, desktop, and e-reader</span>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <div class="w-6 h-6 rounded-full bg-emerald-100 text-emerald-800 flex items-center justify-center">
+                            <i data-lucide="check" class="w-4 h-4"></i>
+                        </div>
+                        <span>Direct Stripe Checkout with instant receipt & download links</span>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <div class="w-6 h-6 rounded-full bg-emerald-100 text-emerald-800 flex items-center justify-center">
+                            <i data-lucide="check" class="w-4 h-4"></i>
+                        </div>
+                        <span>Free module updates as new research emerges</span>
+                    </div>
+                </div>
+
+                <div class="pt-2">
+                    <a href="{% url 'products:list' %}" class="inline-flex items-center space-x-2 px-6 py-3 rounded-xl bg-stone-900 hover:bg-emerald-800 text-white font-semibold text-sm transition">
+                        <span>Browse Catalog</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="lg:col-span-6">
+                <div class="p-8 rounded-3xl bg-stone-50 border border-stone-200/80 shadow-sm space-y-6">
+                    <div class="flex items-center justify-between pb-4 border-b border-stone-200">
+                        <span class="text-xs font-bold uppercase tracking-wider text-stone-500">Curriculum Highlights</span>
+                        <span class="text-xs font-semibold px-2 py-0.5 rounded bg-emerald-100 text-emerald-800">All Levels</span>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div class="p-4 rounded-xl bg-white border border-stone-200/60 shadow-xs flex items-center justify-between">
+                            <div>
+                                <h4 class="font-display font-bold text-sm text-stone-900">Health Education Fundamentals</h4>
+                                <p class="text-xs text-stone-500">8 Modules • 48-Page PDF • Baseline Tracking Sheet</p>
+                            </div>
+                            <span class="text-sm font-bold text-stone-900">$19</span>
+                        </div>
+
+                        <div class="p-4 rounded-xl bg-white border border-stone-200/60 shadow-xs flex items-center justify-between">
+                            <div>
+                                <h4 class="font-display font-bold text-sm text-stone-900">Understanding Everyday Nutrition</h4>
+                                <p class="text-xs text-stone-500">10 Modules • Whole-Food Grocery Matrix • Satiety Map</p>
+                            </div>
+                            <span class="text-sm font-bold text-stone-900">$29</span>
+                        </div>
+
+                        <div class="p-4 rounded-xl bg-white border border-stone-200/60 shadow-xs flex items-center justify-between">
+                            <div>
+                                <h4 class="font-display font-bold text-sm text-stone-900">Building Better Health Habits</h4>
+                                <p class="text-xs text-stone-500">6 Modules • 30-Day Planner • Trigger-Action Worksheets</p>
+                            </div>
+                            <span class="text-sm font-bold text-stone-900">$24</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+
+<!-- 7. FUTURE MEMBERSHIP / TELEGRAM COMMUNITY SECTION (COMING SOON) -->
+<section id="membership-waitlist" class="py-16 md:py-24 bg-[#FAF9F6]">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
+        
+        <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-amber-50 border border-amber-200 text-amber-900 text-xs font-semibold tracking-wide">
+            <i data-lucide="clock" class="w-3.5 h-3.5 text-amber-700"></i>
+            <span>Coming Soon — Phase 2 & 3 Roadmap</span>
+        </div>
+
+        <div class="space-y-3 max-w-2xl mx-auto">
+            <h2 class="text-3xl sm:text-4xl font-display font-bold text-stone-900">
+                VitalPath Private Membership & Telegram Channel
+            </h2>
+            <p class="text-sm sm:text-base text-stone-600 leading-relaxed">
+                We are preparing private cohort communities, direct educator broadcasts, live quarterly Q&As, and monthly deep-dive educational teardowns.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 text-left">
+            <div class="p-4 rounded-xl bg-white border border-stone-200/80 shadow-xs space-y-1">
+                <i data-lucide="send" class="w-4 h-4 text-emerald-700"></i>
+                <h4 class="font-bold text-xs text-stone-900">Telegram Channel</h4>
+                <p class="text-[11px] text-stone-500">Weekly audio notes and quick research summaries.</p>
+            </div>
+            <div class="p-4 rounded-xl bg-white border border-stone-200/80 shadow-xs space-y-1">
+                <i data-lucide="video" class="w-4 h-4 text-emerald-700"></i>
+                <h4 class="font-bold text-xs text-stone-900">Live Q&A Sessions</h4>
+                <p class="text-[11px] text-stone-500">Quarterly webinars breaking down new health studies.</p>
+            </div>
+            <div class="p-4 rounded-xl bg-white border border-stone-200/80 shadow-xs space-y-1">
+                <i data-lucide="lock" class="w-4 h-4 text-emerald-700"></i>
+                <h4 class="font-bold text-xs text-stone-900">Private Resources</h4>
+                <p class="text-[11px] text-stone-500">Member-only guides, worksheets, and updates.</p>
+            </div>
+            <div class="p-4 rounded-xl bg-white border border-stone-200/80 shadow-xs space-y-1">
+                <i data-lucide="bell" class="w-4 h-4 text-emerald-700"></i>
+                <h4 class="font-bold text-xs text-stone-900">Early Access</h4>
+                <p class="text-[11px] text-stone-500">Priority enrollment before public course releases.</p>
+            </div>
+        </div>
+
+        <!-- Waitlist Form Card -->
+        <div class="max-w-xl mx-auto bg-white p-6 sm:p-8 rounded-3xl border border-stone-200 shadow-sm text-left space-y-4">
+            <div class="space-y-1">
+                <h3 class="font-display font-bold text-base text-stone-900">Join the Priority Access Waitlist</h3>
+                <p class="text-xs text-stone-500">Be first to receive invitation links when Telegram access and memberships launch.</p>
+            </div>
+
+            <form action="{% url 'core:waitlist_signup' %}" method="POST" class="space-y-3">
+                {% csrf_token %}
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-semibold text-stone-700 mb-1">Your Name</label>
+                        {{ waitlist_form.name }}
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-stone-700 mb-1">Email Address *</label>
+                        {{ waitlist_form.email }}
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-stone-700 mb-1">Primary Area of Interest</label>
+                    {{ waitlist_form.interest_area }}
+                </div>
+                <button type="submit" class="w-full py-3 px-6 rounded-xl bg-emerald-800 hover:bg-emerald-700 text-white font-semibold text-sm shadow-sm transition">
+                    Join the Waitlist
+                </button>
+            </form>
+            <p class="text-[11px] text-stone-400 text-center">No spam, ever. Unsubscribe with one click anytime.</p>
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}

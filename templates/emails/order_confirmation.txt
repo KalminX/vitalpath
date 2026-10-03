@@ -1,0 +1,23 @@
+VitalPath Education - Order Confirmation
+==================================================
+
+Hello {{ customer_name }},
+
+Your purchase is confirmed! Thank you for enrolling in {{ order.primary_product_title }}.
+
+Order Number: {{ order.order_number }}
+Product: {{ order.primary_product_title }}
+Total Paid: ${{ order.total }} {{ order.currency }}
+
+WHAT HAPPENS NEXT:
+1. You have immediate lifetime access to all curriculum modules and reading handbooks.
+2. Download companion PDF guides for offline study.
+3. Access future updates automatically at no extra cost.
+
+Access your materials here:
+{{ site_url }}/courses/{{ primary_product.slug|default:'' }}/
+
+Need help or have questions? Reach us at {{ site_url }}/contact/
+
+VitalPath Education
+Demystifying health science through calm, structured education.

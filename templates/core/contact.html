@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+
+{% block title %}Contact & Inquiries | VitalPath Education{% endblock %}
+
+{% block content %}
+<section class="py-12 md:py-20">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-start">
+            
+            <!-- Left Info Column -->
+            <div class="md:col-span-5 space-y-6">
+                <span class="text-xs font-bold uppercase tracking-widest text-emerald-800">Support & Inquiries</span>
+                <h1 class="text-3xl sm:text-4xl font-display font-extrabold text-stone-900 tracking-tight leading-tight">
+                    Get in touch with our team.
+                </h1>
+                <p class="text-sm text-stone-600 leading-relaxed">
+                    Have a question regarding course access, educational curricula, or speaking engagements? Send us a message and we will get back to you within 24–48 hours.
+                </p>
+
+                <div class="space-y-4 pt-4 border-t border-stone-200">
+                    <div class="flex items-start space-x-3">
+                        <div class="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-800 flex items-center justify-center flex-shrink-0">
+                            <i data-lucide="mail" class="w-4 h-4"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-xs font-bold text-stone-900">Direct Email</h4>
+                            <a href="mailto:hello@vitalpath.edu" class="text-xs text-stone-600 hover:text-emerald-800 transition">hello@vitalpath.edu</a>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start space-x-3">
+                        <div class="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-800 flex items-center justify-center flex-shrink-0">
+                            <i data-lucide="shield-alert" class="w-4 h-4"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-xs font-bold text-stone-900">Medical Notice</h4>
+                            <p class="text-xs text-stone-500">We cannot provide individual medical diagnosis or clinical treatment consultations.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Form Card -->
+            <div class="md:col-span-7 bg-white p-6 sm:p-8 rounded-3xl border border-stone-200/90 shadow-sm space-y-6">
+                <div class="space-y-1">
+                    <h2 class="font-display font-bold text-lg text-stone-900">Send an Inquiry</h2>
+                    <p class="text-xs text-stone-500">Fill out the details below and our educational team will respond promptly.</p>
+                </div>
+
+                <form method="POST" action="{% url 'core:contact' %}" class="space-y-4">
+                    {% csrf_token %}
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-semibold text-stone-700 mb-1">Your Name *</label>
+                            {{ form.name }}
+                            {% if form.name.errors %}
+                            <p class="text-[11px] text-rose-600 mt-1">{{ form.name.errors.0 }}</p>
+                            {% endif %}
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-stone-700 mb-1">Your Email Address *</label>
+                            {{ form.email }}
+                            {% if form.email.errors %}
+                            <p class="text-[11px] text-rose-600 mt-1">{{ form.email.errors.0 }}</p>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-stone-700 mb-1">Subject / Inquiry Topic</label>
+                        {{ form.subject }}
+                        {% if form.subject.errors %}
+                        <p class="text-[11px] text-rose-600 mt-1">{{ form.subject.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-stone-700 mb-1">Message *</label>
+                        {{ form.message }}
+                        {% if form.message.errors %}
+                        <p class="text-[11px] text-rose-600 mt-1">{{ form.message.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+
+                    <button type="submit" class="w-full py-3.5 px-6 rounded-xl bg-stone-900 hover:bg-emerald-800 text-white font-semibold text-xs transition flex items-center justify-center space-x-2">
+                        <i data-lucide="send" class="w-3.5 h-3.5"></i>
+                        <span>Send Message</span>
+                    </button>
+                </form>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+{% endblock %}

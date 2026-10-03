@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+
+{% block title %}Free Educational Resources & Video Lectures | VitalPath Education{% endblock %}
+
+{% block content %}
+<section class="py-12 md:py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+        
+        <!-- Header -->
+        <div class="max-w-3xl space-y-4">
+            <span class="text-xs font-bold uppercase tracking-widest text-emerald-800">Learning Center</span>
+            <h1 class="text-3xl sm:text-5xl font-display font-extrabold text-stone-900 tracking-tight">
+                Free Educational Resources & Video Lessons
+            </h1>
+            <p class="text-base text-stone-600 leading-relaxed">
+                Access our library of actionable printable checklists, visual reference infographics, and curated YouTube video lectures designed to build your foundational health literacy.
+            </p>
+        </div>
+
+        <!-- Section 1: Free Printable & PDF Tools -->
+        <div class="space-y-6">
+            <div class="flex items-center justify-between border-b border-stone-200/80 pb-4">
+                <div>
+                    <h2 class="text-xl sm:text-2xl font-display font-bold text-stone-900">Downloadable Reference Tools</h2>
+                    <p class="text-xs text-stone-500">Quick-reference cheat sheets, habit trackers, and decision matrices.</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {% for res in resources %}
+                <div class="bg-white rounded-2xl border border-stone-200/80 p-6 flex flex-col justify-between hover:shadow-md transition space-y-4">
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between text-[11px] font-semibold text-stone-500">
+                            <span class="px-2 py-0.5 rounded bg-stone-100 text-stone-700 uppercase tracking-wider">{{ res.get_resource_type_display }}</span>
+                            <span>{{ res.read_time }}</span>
+                        </div>
+                        <h3 class="font-display font-bold text-base text-stone-900 leading-snug">{{ res.title }}</h3>
+                        <p class="text-xs text-stone-600 leading-relaxed">{{ res.summary }}</p>
+                    </div>
+
+                    <div class="pt-4 border-t border-stone-100 flex items-center justify-between">
+                        <span class="text-[11px] font-medium text-stone-500">{{ res.format_label }}</span>
+                        <a href="{% url 'core:home' %}#membership-waitlist" class="text-xs font-semibold text-emerald-800 hover:text-emerald-700 flex items-center space-x-1">
+                            <span>Get Free Tool</span>
+                            <i data-lucide="download" class="w-3.5 h-3.5"></i>
+                        </a>
+                    </div>
+                </div>
+                {% empty %}
+                <div class="col-span-3 text-center py-8 bg-white rounded-2xl border border-stone-200 text-xs text-stone-500">
+                    Educational checklists and reference guides are regularly added here.
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Section 2: YouTube Video Lectures -->
+        <div id="youtube" class="space-y-6 pt-6">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-stone-200/80 pb-4 gap-2">
+                <div>
+                    <h2 class="text-xl sm:text-2xl font-display font-bold text-stone-900">YouTube Video Lectures</h2>
+                    <p class="text-xs text-stone-500">Deep-dive video lessons breaking down research and practical concepts.</p>
+                </div>
+                <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center space-x-2 text-xs font-semibold px-3 py-1.5 rounded-lg bg-stone-100 hover:bg-stone-200 text-stone-800 transition self-start sm:self-auto">
+                    <i data-lucide="youtube" class="w-3.5 h-3.5 text-rose-600"></i>
+                    <span>Subscribe on YouTube</span>
+                </a>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {% for video in videos %}
+                <div class="group bg-white rounded-2xl border border-stone-200/80 overflow-hidden flex flex-col justify-between hover:shadow-md transition">
+                    
+                    <div class="relative aspect-video bg-stone-100 overflow-hidden">
+                        <img src="{{ video.computed_thumbnail }}" alt="{{ video.title }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <div class="absolute bottom-2 right-2 bg-stone-900/90 text-white text-[10px] font-mono px-2 py-0.5 rounded shadow">
+                            {{ video.duration }}
+                        </div>
+                    </div>
+
+                    <div class="p-5 flex-1 flex flex-col justify-between space-y-3">
+                        <div class="space-y-1.5">
+                            <span class="text-[10px] font-semibold text-emerald-800 uppercase tracking-wider">{{ video.category }}</span>
+                            <h3 class="font-display font-bold text-sm text-stone-900 leading-snug group-hover:text-emerald-800 transition">
+                                {{ video.title }}
+                            </h3>
+                            <p class="text-xs text-stone-600 line-clamp-2 leading-relaxed">
+                                {{ video.description }}
+                            </p>
+                        </div>
+
+                        <a href="{{ video.watch_url }}" target="_blank" rel="noopener noreferrer" class="text-xs font-semibold text-stone-800 hover:text-emerald-800 inline-flex items-center space-x-1 pt-2 border-t border-stone-100">
+                            <span>Watch Lesson</span>
+                            <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+                        </a>
+                    </div>
+
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+    </div>
+</section>
+{% endblock %}

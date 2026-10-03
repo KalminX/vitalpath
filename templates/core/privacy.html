@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}Privacy Policy | VitalPath Education{% endblock %}
+
+{% block content %}
+<section class="py-16 md:py-24 bg-white">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+        
+        <div class="border-b border-stone-200 pb-6 space-y-2">
+            <span class="text-xs font-bold uppercase tracking-widest text-emerald-800">Legal Governance</span>
+            <h1 class="text-3xl font-display font-bold text-stone-900">Privacy Policy</h1>
+            <p class="text-xs text-stone-500">Last updated: January 2026</p>
+        </div>
+
+        <div class="prose prose-stone text-xs sm:text-sm text-stone-700 leading-relaxed space-y-6">
+            <h2 class="text-base font-bold text-stone-900">1. Information We Collect</h2>
+            <p>
+                When you purchase educational materials or join our waitlist, we collect standard transaction information including your name, email address, and order history. We do not store payment card details directly; all payments are processed securely by Stripe.
+            </p>
+
+            <h2 class="text-base font-bold text-stone-900">2. How We Use Information</h2>
+            <p>
+                We use collected information solely to:
+            </p>
+            <ul class="list-disc pl-5 space-y-1">
+                <li>Deliver purchased educational guides and course curriculum access</li>
+                <li>Send order receipts and important updates regarding course materials</li>
+                <li>Respond to customer inquiries and support requests</li>
+                <li>Send waitlist and announcement notifications with your explicit consent</li>
+            </ul>
+
+            <h2 class="text-base font-bold text-stone-900">3. Third-Party Services</h2>
+            <p>
+                We partner with trusted service providers including Stripe (payment infrastructure) and secure email delivery services. We never sell, rent, or trade your personal data to third-party marketers.
+            </p>
+
+            <h2 class="text-base font-bold text-stone-900">4. Contact & Data Requests</h2>
+            <p>
+                To request data deletion or review your stored records, please reach out to <a href="mailto:privacy@vitalpath.edu" class="text-emerald-800 underline">privacy@vitalpath.edu</a>.
+            </p>
+        </div>
+
+    </div>
+</section>
+{% endblock %}

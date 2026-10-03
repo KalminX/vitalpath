@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}Terms of Service & Health Disclaimer | VitalPath Education{% endblock %}
+
+{% block content %}
+<section class="py-16 md:py-24 bg-white">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+        
+        <div class="border-b border-stone-200 pb-6 space-y-2">
+            <span class="text-xs font-bold uppercase tracking-widest text-emerald-800">Legal Governance</span>
+            <h1 class="text-3xl font-display font-bold text-stone-900">Terms of Service & Health Disclaimer</h1>
+            <p class="text-xs text-stone-500">Last updated: January 2026</p>
+        </div>
+
+        <!-- Strict Non-Clinical Health Disclaimer Banner -->
+        <div id="disclaimer" class="p-6 rounded-2xl bg-amber-50 border border-amber-200 text-amber-950 space-y-2">
+            <div class="flex items-center space-x-2 font-bold text-sm text-amber-900">
+                <i data-lucide="shield-alert" class="w-5 h-5 text-amber-700"></i>
+                <span>IMPORTANT EDUCATIONAL & NON-MEDICAL DISCLAIMER</span>
+            </div>
+            <p class="text-xs leading-relaxed">
+                VitalPath Education provides digital resources, curriculum guides, and media content solely for informational and educational purposes. Nothing on this website or in our course materials constitutes clinical medical advice, psychiatric evaluation, diagnosis, or disease treatment. Always consult a qualified medical professional before making significant alterations to your diet, exercise routine, or healthcare regimen.
+            </p>
+        </div>
+
+        <div class="prose prose-stone text-xs sm:text-sm text-stone-700 leading-relaxed space-y-6">
+            <h2 class="text-base font-bold text-stone-900">1. Intellectual Property & License</h2>
+            <p>
+                Purchasing a VitalPath digital guide grants you a non-exclusive, non-transferable, individual license for personal educational use. You may not resell, redistribute, rebroadcast, or publicly distribute our curriculum, videos, or PDF guides without explicit written consent.
+            </p>
+
+            <h2 class="text-base font-bold text-stone-900">2. Refund Policy</h2>
+            <p>
+                Because digital goods are delivered immediately upon successful transaction completion, we offer a 14-day educational satisfaction guarantee. If you review the curriculum and believe it does not meet our educational standard, contact support for assistance.
+            </p>
+
+            <h2 class="text-base font-bold text-stone-900">3. Demonstration Notice</h2>
+            <p>
+                This platform is an operational prototype demonstrating digital educational infrastructure, creator dashboards, and Stripe checkout systems for educational brand management.
+            </p>
+        </div>
+
+    </div>
+</section>
+{% endblock %}
